@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Anchal ❤️</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+/* Full screen romantic background with subtle stars */
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at bottom, #ff9a9e 0%, #fad0c4 60%, #ffdde1 100%);
+    font-family: 'Pacifico', cursive;
+    position: relative;
+}
+
+/* Container for message and buttons */
+.container {
+    text-align: center;
+    z-index: 5;
+}
+
+/* Heading typewriter style */
+h1 {
+    color: #fff;
+    font-size: 3rem;
+    min-height: 80px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+}
+
+/* Buttons */
+button {
+    font-size: 1.5rem;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    position: relative;
+    z-index: 10;
+}
+
+#yesBtn {
+    background: #ff3366;
+    color: white;
+    margin-right: 25px;
+}
+
+#yesBtn:hover {
+    transform: scale(1.4);
+}
+
+#noBtn {
+    background: #ffcc00;
+    color: #333;
+    position: absolute;
+}
+
+/* Floating hearts & butterflies */
+.heart, .butterfly {
+    position: absolute;
+    animation: floatUp linear forwards;
+}
+
+.heart { color: #ff6b81; font-size: 18px; }
+.butterfly { color: #ff69b4; font-size: 22px; }
+
+@keyframes floatUp {
+    from { transform: translateY(100vh) scale(1); opacity: 1; }
+    to { transform: translateY(-10vh) scale(1.6); opacity: 0; }
+}
+
+/* Firework hearts */
+.burst {
+    position: absolute;
+    font-size: 28px;
+    animation: burst 1.5s ease-out forwards;
+}
+
+@keyframes burst {
+    from { transform: scale(0); opacity: 1; }
+    to { transform: scale(2.5); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+    <source src="hum-tum-kitne-paas-hain.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+    <h1 id="text"></h1>
+    <button id="yesBtn">YES 💕</button>
+    <button id="noBtn">NO 😜</button>
+</div>
+
+<script>
+/* TYPEWRITER MESSAGE */
+const message = "💖 Hey Anchal Ji! 💖";
+let i = 0;
+const textEl = document.getElementById("text");
+
+function typeText() {
+    if (i < message.length) {
+        textEl.innerHTML += message.charAt(i);
+        i++;
+        setTimeout(typeText, 70);
+    }
+}
+typeText();
+
+/* YES button */
+const yesBtn = document.getElementById("yesBtn");
+const music = document.getElementById("bgMusic");
+
+yesBtn.addEventListener("click", () => {
+    music.play();
+    fireworks();
+    document.body.innerHTML = `
+    <div style="
+        height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        text-align:center;
+        background: radial-gradient(circle at center, #ff9a9e, #ffdde1);
+        color:white;
+        font-family:'Great Vibes', cursive;
+        font-size:2.2rem;
+        padding: 20px;
+        line-height:1.8;">
+        💕 YAYYYY!!! 😍<br><br>
+        My dearest Anchal Ji,<br>
+        I know the distance between us is tough, but I believe that soon we'll be together, just like we've dreamed.<br>
+        I can't wait to laugh, explore, and make every little moment unforgettable with you. <br>
+        Every heartbeat reminds me of you, and I promise that all the things we talked about will come true when we meet.<br>
+        Until then, remember that my love is always with you ❤️<br><br>
+        Happy Valentine’s Day! 🌹✨
+    </div>`;
+});
+
+/* FIREWORKS */
+function fireworks() {
+    for (let i = 0; i < 50; i++) {
+        const burst = document.createElement("div");
+        burst.className = "burst";
+        burst.innerHTML = "💖";
+        burst.style.left = Math.random() * 100 + "vw";
+        burst.style.top = Math.random() * 100 + "vh";
+        document.body.appendChild(burst);
+        setTimeout(() => burst.remove(), 1500);
+    }
+}
+
+/* NO BUTTON FOLLOWS CURSOR */
+const noBtn = document.getElementById("noBtn");
+
+document.addEventListener("mousemove", (e) => {
+    const offsetX = 50 + Math.random() * 100; // random offset so it moves away
+    const offsetY = 50 + Math.random() * 100;
+    const rect = yesBtn.getBoundingClientRect();
+    const distance = Math.hypot(e.clientX - rect.left, e.clientY - rect.top);
+    if (distance < 200) { // if cursor near YES button
+        noBtn.style.left = Math.random() * (window.innerWidth - 80) + "px";
+        noBtn.style.top = Math.random() * (window.innerHeight - 50) + "px";
+    }
+});
+
+/* FLOATING HEARTS */
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💗";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = 15 + Math.random() * 20 + "px";
+    heart.style.animationDuration = 4 + Math.random() * 3 + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 7000);
+}
+setInterval(createHeart, 250);
+
+/* FLOATING BUTTERFLIES */
+function createButterfly() {
+    const butterfly = document.createElement("div");
+    butterfly.className = "butterfly";
+    butterfly.innerHTML = "🦋";
+    butterfly.style.left = Math.random() * 100 + "vw";
+    butterfly.style.fontSize = 20 + Math.random() * 20 + "px";
+    butterfly.style.animationDuration = 5 + Math.random() * 3 + "s";
+    document.body.appendChild(butterfly);
+    setTimeout(() => butterfly.remove(), 7000);
+}
+setInterval(createButterfly, 400);
+</script>
+
+</body>
+</html>
